@@ -1,0 +1,323 @@
+/***********Imports*************/
+@import 'rupture'
+@import 'nib'
+@import 'all.styl'
+@import 'mixins.styl'
+
+normalize-base()
+normalize-html5()
+
+.wrapper
+    position relative
+    overflow hidden
+    font-size 12px
+
+/*Header*/
+.header
+    display flex
+    height 100px
+    align-items center
+    justify-content space-between
+    padding 0 5vw
+    +below(480px)
+        height 60px
+
+.logo
+    a
+        position relative
+        display block
+        text-decoration none
+        z-index 1
+    svg
+        width 130px
+        height auto
+
+.lang
+    a
+        display inline-block
+        margin-left 1rem
+
+/*Main*/
+#app
+section
+    +below(860px)
+        width 100%
+
+.main
+    height calc(100vh - 200px)
+    display flex
+    align-items center
+    +below(480px)
+        height calc(100vh - 120px)
+
+.main__content
+    display flex
+    align-items center
+    height 100%
+    margin 0 auto
+    padding 4rem
+    color #fff
+    +below(860px)
+        width 100%
+        display block
+        padding 3rem
+    +below(480px)
+        padding 2rem 1.5rem
+        height auto
+
+
+.main__left
+    position relative
+    width 50%
+    text-align right
+    +below(860px)
+        width 100%
+        padding-right 0
+    +below(480px)
+        padding 0
+    img
+        width 100%
+        height auto
+        max-height 440px
+
+.main_left__pc
+    +below(860px)
+        display none
+
+.main_left__tablet
+    display none
+    +below(860px)
+        display block
+    +below(480px)
+        display none
+
+#canvas
+    absolute left top
+    height 100%
+    width 100%
+    +below(860px)
+        display flex
+        align-items center
+        justify-content center
+    +below(480px)
+        display none
+    canvas
+        transform rotate(-100deg)
+        position relative
+        right 20%
+        bottom 30%
+        +below(1060px)
+            bottom 5%
+            right 15%
+        +below(860px)
+            transform rotate(-81deg)
+            bottom 10%
+            right 25%
+
+.main__right
+    position relative
+    max-width 400px
+    display none
+    margin-left 4rem
+    transition all 0.3s
+    +below(860px)
+        margin 3rem 0 0
+        max-width none
+        padding-left 0
+        width 100%
+    +below(480px)
+        margin-top 2rem
+    h1
+        font-size 2em
+        font-weight bold
+        line-height 1.3em
+        margin-bottom 1rem
+        +below(860px)
+            text-align center
+        +below(480px)
+            font-size 1.5em
+            text-align left
+    .right__subtitle
+        margin-bottom 1.5rem
+        opacity 0.7
+        +below(860px)
+            text-align center
+        +below(480px)
+            text-align left
+
+.right__center
+    position relative
+
+#block
+    position absolute
+    transition all 0.3s
+
+.block-2
+    transform translateX(-200%)
+    opacity 0
+
+.section__slides
+    display flex
+    flex-direction row
+
+.section__title
+    font-size 2em
+    color #fff
+    font-family font_bold
+    margin-bottom 1rem
+    line-height 1.3em
+    +below(860px)
+        text-align center
+    +below(480px)
+        text-align left
+
+.form__sms
+.form__verify
+.form__login
+    margin-bottom 1rem
+    display flex
+    align-items center
+    +below(480px)
+        display block
+
+.form__login
+    align-items flex-end
+
+.form__input
+    position relative
+    flex 1
+    input
+        width 100%
+        background none
+        box-sizing border-box
+        border none
+        border-bottom 1px solid #fff
+        height 40px
+        border-radius 0
+        font-size 1em
+        padding 0 1rem
+        color #fff
+        &:placeholder-shown
+        &:focus
+        &:valid
+            outline none
+            & ~ label
+                top -25px
+                left 0
+                font-size 0.8em
+                opacity 0.7
+        &:hover ~ label
+        &.active ~ label
+            top -25px
+            left 0
+            font-size 0.8em
+            opacity 0.7
+        &::-webkit-input-placeholder
+        &:-moz-placeholder
+            color #fff
+        &::placeholder
+            color #fff
+    label
+        position absolute
+        left 1rem
+        top 0
+        display flex
+        align-items center
+        height 100%
+        pointer-events none
+        transition all 0.3s
+    span
+        absolute top 50% right
+        width 40px
+        height 40px
+        display flex
+        align-items center
+        justify-content center
+        margin-top -20px
+        cursor pointer
+        z-index 1
+
+.form__button
+    margin-left 1rem
+    +below(480px)
+        margin 0
+
+.form__actions
+    margin-top 2rem
+    +below(860px)
+        text-align center
+    +below(480px)
+        text-align left
+    a
+        margin-bottom 0.5rem
+    span
+        display inline-block
+        margin-bottom 1rem
+
+.end__serfing
+    margin-top 2rem
+
+/*Footer*/
+.footer
+    height 100px
+    display flex
+    align-items center
+    justify-content space-between
+    padding 0 5vw
+    color #fff
+    +below(480px)
+        height 60px
+
+/*slides*/
+.slide-enter-active
+    opacity 1
+    transition all 0.5s ease-in-out
+.slide-leave-active
+    position absolute
+    opacity 0
+    transition all 0.5s ease-in-out
+.slide-enter
+    position relative
+    opacity 1
+    transform translate(200%, 0)
+.slide-leave-to
+    position absolute
+    transform translate(-200%, 0)
+    opacity 0
+
+.form__inputs
+    flex 1
+    .form__input
+        &:first-child
+            margin-bottom 1.5rem
+
+.resend_sms
+    span
+        display none
+
+.resend_sms__timer
+    opacity 0.5
+    span
+        margin 0
+
+.form_actions__row
+    display flex
+    align-items center
+    .linker
+        margin-left 1rem
+    +below(480px)
+        display block
+        .linker
+            margin-left 0
+
+.end__maximize_speed
+.end__serfing
+    +below(860px)
+        text-align center
+    +below(480px)
+        text-align left
+
+.end__maximize_speed
+    margin-top 2rem
+    +below(480px)
+        margin-top 1rem

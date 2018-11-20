@@ -1,0 +1,106 @@
+/*Fonts*/
+@font-face {
+    font-family: font_regular;
+    src: url('../fonts/TTNormsRegular/TTNormsRegular.eot');
+    src: url('../fonts/TTNormsRegular/TTNormsRegular.eot') format('embedded-opentype'),
+            url('../fonts/TTNormsRegular/TTNormsRegular.woff2') format('woff2'),
+            url('../fonts/TTNormsRegular/TTNormsRegular.woff') format('woff'),
+            url('../fonts/TTNormsRegular/TTNormsRegular.ttf') format('truetype'),
+            url('../fonts/TTNormsRegular/TTNormsRegular.svg#TTNormsRegular') format('svg');
+}
+@font-face {
+    font-family: font_bold;
+    src: url('../fonts/TTNormsBold/TTNormsBold.eot');
+    src: url('../fonts/TTNormsBold/TTNormsBold.eot') format('embedded-opentype'),
+            url('../fonts/TTNormsBold/TTNormsBold.woff2') format('woff2'),
+            url('../fonts/TTNormsBold/TTNormsBold.woff') format('woff'),
+            url('../fonts/TTNormsBold/TTNormsBold.ttf') format('truetype'),
+            url('../fonts/TTNormsBold/TTNormsBold.svg#TTNormsBold') format('svg');
+}
+
+$dark = #262c38
+$gray = #f2f2f2
+$blue = #1b71ff
+$darkblue = #004AC4
+$red = #E74625
+$lightblue = #9DC1FF
+
+*
+    margin 0
+    padding 0
+    box-sizing border-box
+
+html
+body
+    margin 0
+    padding 0
+    font-family font_regular
+    color #fff
+    line-height 1.3em
+    width 100%
+    height 100%
+    min-height 100vh
+    background radial-gradient(1452.75px at 29.49% 51.48%, #3aaaff 0, $blue 100%)
+
+a
+    color $dark
+    transition all 0.3s ease-in-out
+    text-decoration none
+
+::selection
+    background darken($dark, 20)
+    color #fff
+    text-shadow none
+
+::-moz-selection
+    background darken($dark, 20)
+    color #fff
+    text-shadow none
+
+h1
+h2
+h3
+h4
+h5
+h6
+    font-weight normal
+    font-family font_bold
+    line-height normal
+
+b
+strong
+dt
+    font-weight normal
+    font-family font_bold
+
+i
+em
+code
+    font-weight normal
+    font-family font_bold
+
+a.img
+    border none
+    &:focus
+        outline none
+
+pre
+    margin 0
+    border none
+    background none
+
+ul
+ol
+    margin 0 0 1rem 2rem
+    padding 0
+
+
+i
+    &:before
+        margin 0
+        width auto
+
+p
+    margin-bottom 1.5rem
+    &:last-child
+        margin-bottom 0
