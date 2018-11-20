@@ -1,0 +1,1 @@
+var app=new Vue({el:"#app",data:{verify:!1,isActive:!1,success:!1,loginttk:!1,no_sms:!1,call_auth:!1,speedup:!1,speedup_next:!1},methods:{activeSection:function(){this.isActive=!this.isActive}}});
