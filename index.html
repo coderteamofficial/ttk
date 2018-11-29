@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/fonts/fontello/css/fontello.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
+    <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
 
 </head>
@@ -42,7 +43,11 @@
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M319.305 0.289432C319.101 3.9017 318.271 9.95523 314.809 16.3636C312.883 19.9289 310.671 22.6237 308.809 24.5455C310.643 27.9554 312.477 31.3654 314.311 34.7754C316.144 38.1819 317.976 41.5884 319.809 44.9949H308.092C306.545 42.098 304.997 39.2011 303.45 36.3043C301.903 33.4074 300.356 30.5105 298.809 27.6136H290.809V45C288.975 44.999 287.142 44.9982 285.309 44.9974C283.475 44.9967 281.642 44.9959 279.809 44.9949V0H290.809V17.3864H300.809C302.371 15.3481 304.353 12.2789 305.809 8.18182C306.88 5.16784 307.367 2.4392 307.589 0.289432H319.305ZM352.22 31.8834C353.239 30.7196 354.031 29.3256 354.597 27.7015C355.164 26.0764 355.447 24.3019 355.447 22.3761C355.447 20.5311 355.164 18.8058 354.597 17.2011C354.031 15.5975 353.247 14.2219 352.247 13.0796C351.247 11.9361 350.039 11.0341 348.624 10.3724C347.208 9.70967 345.651 9.37933 343.952 9.37933C342.254 9.37933 340.706 9.70967 339.309 10.3724C337.912 11.0341 336.705 11.9361 335.686 13.0796C334.667 14.2219 333.883 15.5975 333.336 17.2011C332.788 18.8058 332.515 20.5311 332.515 22.3761C332.515 24.3019 332.798 26.0764 333.364 27.7015C333.93 29.3256 334.713 30.7196 335.714 31.8834C336.714 33.0473 337.912 33.9585 339.309 34.6213C340.706 35.283 342.254 35.6133 343.952 35.6133C345.651 35.6133 347.199 35.283 348.596 34.6213C349.992 33.9585 351.2 33.0473 352.22 31.8834ZM352.672 1.56972C355.352 2.61449 357.664 4.10219 359.609 6.03178C361.552 7.96241 363.071 10.3062 364.166 13.0602C365.261 15.8151 365.808 18.9012 365.808 22.3195C365.808 25.6969 365.261 28.785 364.166 31.5779C363.071 34.3739 361.552 36.7659 359.609 38.757C357.664 40.7481 355.352 42.2861 352.672 43.3708C349.992 44.4576 347.085 45 343.952 45C340.819 45 337.922 44.4576 335.261 43.3708C332.599 42.2861 330.297 40.7481 328.353 38.757C326.409 36.7659 324.889 34.3739 323.795 31.5779C322.7 28.785 322.153 25.6969 322.153 22.3195C322.153 18.9012 322.7 15.8151 323.795 13.0602C324.889 10.3062 326.409 7.96241 328.353 6.03178C330.297 4.10219 332.599 2.61449 335.261 1.56972C337.922 0.522898 340.819 0 343.952 0C347.085 0 349.992 0.522898 352.672 1.56972ZM403.478 9.24088C405.319 6.16058 407.159 3.08029 409 0H421V45H410V16.3636C408.49 19.1091 406.98 21.8549 405.47 24.6006C403.98 27.3096 402.49 30.0185 401 32.7273H394C392.499 29.828 390.999 26.929 389.498 24.03C387.999 21.1337 386.499 18.2375 385 15.3409V45H374V0H387C388.834 3.06862 390.667 6.13724 392.501 9.20586C394.334 12.2736 396.167 15.3413 398 18.4091C399.826 15.353 401.652 12.2969 403.478 9.24088Z" fill="#E74625"/>
                 </svg></a>
             </div>
-            <div class="lang"><a href="/en.html" class="linker">English</a> <a href="/tat.html" class="linker">Татарский</a></div>
+            <div class="lang">
+                <a href="/" class="linker active">Рус</a>
+                <a href="/tat.html" class="linker">Тат</a>
+                <a href="/en.html" class="linker">Eng</a>
+            </div>
         </header>
         <main class="main">
             <div class="main__content">
@@ -61,9 +66,12 @@
                                     <transition name="slide">
                                         <section class="section-1" v-show="!verify && !loginttk">
                                             <div class="right__subtitle">Укажите номер вашего мобильного телефона в любом формате для получения кода доступа по СМС</div>
-                                            <form class="form__sms">
-                                                <div class="form__input"><input type="tel" value="" required="required"><label>Номер телефона</label></div>
-                                                <div class="form__button"><span class="button" disabled @click="verify = !false">Подключиться</span></div>
+                                            <form class="form form__sms">
+                                                <div class="form__input"><input class="tel" type="tel" value="" required="required"  v-model="yourPhone" v-mask="maskPhone" v-focus="placePhone"><label>Номер телефона</label></div>
+                                                <div class="form__button">
+                                                    <button type='button' class="button" v-if="yourPhone.length < 10" disabled>Подключиться</button>
+                                                    <button type='button' class="button" v-else @click="verify = !false">Подключиться</button>
+                                                </div>
                                             </form>
                                             <div class="form__actions">
                                                 <span>или</span><br />
@@ -73,11 +81,16 @@
                                         </section>
                                     </transition>
                                     <transition name="slide">
-                                        <section class="section-2" v-bind:class="{ active: isActive }" v-show="verify && !call_auth && !loginttk">
+                                        <section class="section-2" v-show="verify && !call_auth && !loginttk">
                                             <div class="right__subtitle">СМС с кодом активации выслан на указанный телефон</div>
-                                            <form class="form__verify">
-                                                <div class="form__input"><input type="text" value="" required="required"><label>Введите код</label></div>
-                                                <div class="form__button"><span class="button" @click="success = !false" disabled>Подключиться</span></div>
+                                            <form class="form form__verify">
+                                                <div class="form__input">
+                                                    <input :class="{ novalid: checkButton }" type="text" value="" required="required" v-model="yourCode" v-mask="maskCode"><label>Введите код</label>
+                                                </div>
+                                                <div class="form__button">
+                                                    <button type='button' class="button" v-if="yourCode !== '11111'" @click="checkButton = !false">Подключиться</button>
+                                                    <button type='button' class="button" v-else @click="success = !false">Подключиться</button>
+                                                </div>
                                             </form>
                                             <transition name="slide">
                                                 <div class="form__actions" v-show="!no_sms">
@@ -85,14 +98,15 @@
                                                         <span class="resend_sms__timer">Повторная отправка кода через <span>30</span></span>
                                                         <a href="#" class="linker">Повторная отправка</a>
                                                     </div>
-                                                    <a href="#" class="linker" @click="no_sms = !false">Не пришло СМС с кодом?</a>
+                                                    <a href="#" class="linker" @click="no_sms = !false">Не пришло СМС с кодом?</a><br />
+                                                    <a href="#" class="linker" @click="verify = false">Назад</a>
                                                 </div>
                                             </transition>
                                             <transition name="slide">
                                                 <div class="form__actions" v-show="no_sms">
                                                     <a href="#" class="linker" @click="call_auth = !false">Авторизация по звонку</a><br />
                                                     <a href="#" class="linker" @click="loginttk = !false">Войти с аккаунта Таттелеком</a><br />
-                                                    <a href="#" class="linker">Авторизация через Госуслуги</a>
+                                                    <a href="#" class="linker" @click="loginttk = !false">Авторизация через Госуслуги</a>
                                                 </div>
                                             </transition>
                                         </section>
@@ -100,24 +114,30 @@
                                     <transition name="slide">
                                         <section class="section-3" v-show="loginttk">
                                             <div class="right__subtitle">Для подключения к сети введите логин и пароль в соответствующее поле</div>
-                                            <form class="form__login">
+                                            <form class="form form__login">
                                                 <div class="form__inputs">
                                                     <div class="form__input"><input type="text" value="" required="required"><label>Логин</label></div>
                                                     <div class="form__input"><input id="password-field" type="password" value="" required="required"><label>Пароль</label><span toggle="#password-field" class="toggle-password demo-icon icon-visible"></span></div>
                                                 </div>
-                                                <div class="form__button"><span class="button">Подключиться</span></div>
+                                                <div class="form__button"><button class="button" type='button'>Подключиться</button></div>
                                             </form>
                                             <div class="form__actions">
-                                                <a href="#" class="linker">Получить логин и пароль</a>
+                                                <a href="#" class="linker">Получить логин и пароль</a><br />
+                                                <a href="#" class="linker" @click="loginttk = false">Назад</a>
                                             </div>
                                         </section>
                                     </transition>
                                     <transition name="slide">
                                         <section class="section-4" v-show="call_auth" v-show="success">
                                             <div class="right__subtitle">Сейчас мы осуществим вызов на указанный Вами номер, введите в поле ниже 4 последних цифры вызывающего номера</div>
-                                            <form class="form__verify">
-                                                <div class="form__input"><input type="text" value="" required="required"><label>Введите код</label></div>
-                                                <div class="form__button"><span class="button">Подключиться</span></div>
+                                            <form class="form form__verify">
+                                                <div class="form__input">
+                                                    <input type="text" value="" required="required" v-model="yourCode" v-mask="maskCode"><label>Введите код</label>
+                                                </div>
+                                                <div class="form__button">
+                                                    <button type='button' class="button check_button" v-if="yourCode !== '11111'" >Подключиться</button>
+                                                    <button type='button' class="button" v-else @click="success = !false">Подключиться</button>
+                                                </div>
                                             </form>
                                         </section>
                                     </transition>
@@ -125,7 +145,7 @@
                             </div>
                         </transition>
                         <transition name="slide">
-                            <div class="main__end" id="section__end"  v-show="success && !speedup">
+                            <div class="main__end" id="section__end" v-show="success && !speedup">
                                 <div class="section__title">Подключение совершено успешно на скорости 5 мб/с</div>
                                 <div class="end__maximize_speed"><a href="#" class="button" @click="speedup = !false">Увеличить скорость</a></div>
                                 <div class="end__serfing"><a href="https://tattelecom.ru" class="linker" target="_blank">Перейти в браузер</a></div>
@@ -138,9 +158,9 @@
                                     <transition name="slide">
                                         <section class="section-5">
                                             <div class="right__subtitle">Уважаемый клиент мы очень рады что Вы пользуетесь нашими услугами! Вы авторизованы как:</div>
-                                            <form class="form__sms">
+                                            <form class="form form__sms">
                                                 <div class="form__input"><input type="text" value="" required="required"><label>123456789@wifi</label></div>
-                                                <div class="form__button"><span class="button">Изменить данные</span></div>
+                                                <div class="form__button"><button type='button' class="button">Изменить данные</button></div>
                                             </form>
                                             <div class="form__actions">
                                                 <span>Вы находитесь в общественной сети Wi-Fi
@@ -175,11 +195,11 @@
     </div>
 
     <!--Scripts-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
     <script src="assets/js/index.js"></script>
-    <script src="assets/js/jquery.main.js"></script>
     <script src="assets/js/bubbles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.main.js"></script>
 
 </body>
 </html>

@@ -103,9 +103,6 @@ p:last-child {
   position: relative;
   display: inline-block;
   color: #fff;
-  opacity: 0.7;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-  filter: alpha(opacity=70);
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -128,9 +125,9 @@ p:last-child {
   transition: all 0.3s;
 }
 .linker:hover {
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
 }
 .linker:hover::before {
   right: 0;
@@ -298,6 +295,14 @@ template {
   display: inline-block;
   margin-left: 1rem;
 }
+.lang a.active {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+}
+.lang a.active::before {
+  display: none;
+}
 /*Main*/
 @media only screen and (max-width: 860px) {
   #app,
@@ -339,6 +344,7 @@ template {
   -webkit-align-items: center;
   align-items: center;
   height: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 4rem;
   color: #fff;
@@ -393,67 +399,6 @@ template {
 @media only screen and (max-width: 480px) {
   .main_left__tablet {
     display: none;
-  }
-}
-#canvas {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
-@media only screen and (max-width: 860px) {
-  #canvas {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: box;
-    display: flex;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -o-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -o-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-  }
-}
-@media only screen and (max-width: 480px) {
-  #canvas {
-    display: none;
-  }
-}
-#canvas canvas {
-  -webkit-transform: rotate(-100deg);
-  -moz-transform: rotate(-100deg);
-  -o-transform: rotate(-100deg);
-  -ms-transform: rotate(-100deg);
-  transform: rotate(-100deg);
-  position: relative;
-  right: 20%;
-  bottom: 30%;
-}
-@media only screen and (max-width: 1060px) {
-  #canvas canvas {
-    bottom: 5%;
-    right: 15%;
-  }
-}
-@media only screen and (max-width: 860px) {
-  #canvas canvas {
-    -webkit-transform: rotate(-81deg);
-    -moz-transform: rotate(-81deg);
-    -o-transform: rotate(-81deg);
-    -ms-transform: rotate(-81deg);
-    transform: rotate(-81deg);
-    bottom: 10%;
-    right: 25%;
   }
 }
 .main__right {
@@ -652,6 +597,10 @@ template {
 .form__input input::placeholder {
   color: #fff;
 }
+.form__input input.novalid {
+  border-color: #e74625;
+  color: #e74625;
+}
 .form__input label {
   position: absolute;
   left: 1rem;
@@ -676,7 +625,7 @@ template {
   -ms-transition: all 0.3s;
   transition: all 0.3s;
 }
-.form__input span {
+.form__input > span {
   position: absolute;
   top: 50%;
   right: 0;
@@ -704,8 +653,42 @@ template {
   cursor: pointer;
   z-index: 1;
 }
+.form__input .error {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  top: auto;
+  width: 100%;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  display: block;
+  pointer-events: none;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+}
+.country-list {
+  color: #262c38 !important;
+}
+.intl-tel-input {
+  width: 100%;
+}
+.intl-tel-input.iti-container {
+  width: auto !important;
+}
 .form__button {
   margin-left: 1rem;
+}
+.form__button button.validate {
+  display: none;
+}
+.form__button button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
 }
 @media only screen and (max-width: 480px) {
   .form__button {
@@ -820,13 +803,13 @@ template {
 .form__inputs .form__input:first-child {
   margin-bottom: 1.5rem;
 }
-.resend_sms span {
-  display: none;
-}
 .resend_sms__timer {
+  display: none !important;
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
+  margin-bottom: 0.5rem !important;
+  line-height: normal;
 }
 .resend_sms__timer span {
   margin: 0;
@@ -874,6 +857,63 @@ template {
 @media only screen and (max-width: 480px) {
   .end__maximize_speed {
     margin-top: 1rem;
+  }
+}
+#canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+#canvas canvas {
+  -webkit-transform: rotate(-100deg);
+  -moz-transform: rotate(-100deg);
+  -o-transform: rotate(-100deg);
+  -ms-transform: rotate(-100deg);
+  transform: rotate(-100deg);
+  position: relative;
+  right: 20%;
+  bottom: 5%;
+}
+@media only screen and (min-width: 1700px) {
+  #canvas canvas {
+    right: 23%;
+  }
+}
+@media only screen and (max-width: 1040px) {
+  #canvas canvas {
+    right: 12%;
+    bottom: 7%;
+  }
+}
+@media only screen and (max-width: 860px) {
+  #canvas canvas {
+    right: 27%;
+    bottom: -7%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #canvas canvas {
+    display: none;
   }
 }
 

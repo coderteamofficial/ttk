@@ -36,6 +36,10 @@ normalize-html5()
     a
         display inline-block
         margin-left 1rem
+        &.active
+            opacity 0.5
+            &::before
+                display none
 
 /*Main*/
 #app
@@ -54,6 +58,7 @@ section
     display flex
     align-items center
     height 100%
+    width 100%
     margin 0 auto
     padding 4rem
     color #fff
@@ -90,29 +95,6 @@ section
         display block
     +below(480px)
         display none
-
-#canvas
-    absolute left top
-    height 100%
-    width 100%
-    +below(860px)
-        display flex
-        align-items center
-        justify-content center
-    +below(480px)
-        display none
-    canvas
-        transform rotate(-100deg)
-        position relative
-        right 20%
-        bottom 30%
-        +below(1060px)
-            bottom 5%
-            right 15%
-        +below(860px)
-            transform rotate(-81deg)
-            bottom 10%
-            right 25%
 
 .main__right
     position relative
@@ -217,6 +199,9 @@ section
             color #fff
         &::placeholder
             color #fff
+        &.novalid
+            border-color $red
+            color $red
     label
         position absolute
         left 1rem
@@ -226,7 +211,7 @@ section
         height 100%
         pointer-events none
         transition all 0.3s
-    span
+    > span
         absolute top 50% right
         width 40px
         height 40px
@@ -236,9 +221,34 @@ section
         margin-top -20px
         cursor pointer
         z-index 1
+    .error
+        absolute left bottom -1rem
+        top auto
+        width 100%
+        opacity 0
+        display block
+        pointer-events none
+        height auto
+        margin 0
+        padding 0
+        cursor default
+
+.country-list
+    color $dark !important
+
+.intl-tel-input
+    width 100%
+    &.iti-container
+        width auto !important
 
 .form__button
     margin-left 1rem
+    button
+        &.validate
+            display none
+        &.disabled
+            pointer-events none
+            opacity 0.5
     +below(480px)
         margin 0
 
@@ -291,12 +301,11 @@ section
         &:first-child
             margin-bottom 1.5rem
 
-.resend_sms
-    span
-        display none
-
 .resend_sms__timer
+    display none !important
     opacity 0.5
+    margin-bottom 0.5rem !important
+    line-height normal
     span
         margin 0
 
@@ -321,3 +330,26 @@ section
     margin-top 2rem
     +below(480px)
         margin-top 1rem
+
+#canvas
+    absolute left top
+    width 100%
+    height 100%
+    display flex
+    align-items center
+    justify-content center
+    canvas
+        transform rotate(-100deg)
+        position relative
+        right 20%
+        bottom 5%
+        +above(1700px)
+            right 23%
+        +below(1040px)
+            right 12%
+            bottom 7%
+        +below(860px)
+            right 27%
+            bottom -7%
+        +below(480px)
+            display none

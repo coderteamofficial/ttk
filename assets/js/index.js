@@ -1,1 +1,1 @@
-var app=new Vue({el:"#app",data:{verify:!1,isActive:!1,success:!1,loginttk:!1,no_sms:!1,call_auth:!1,speedup:!1,speedup_next:!1},methods:{activeSection:function(){this.isActive=!this.isActive}}});
+Vue.directive("mask",VueMask.VueMaskDirective);var app=new Vue({el:"#app",data:{verify:!1,success:!1,loginttk:!1,no_sms:!1,call_auth:!1,speedup:!1,speedup_next:!1,checkButton:!1,code:null,yourCode:"",maskCode:"#####",yourPhone:"",maskPhone:"+7 (###) ?##########",placePhone:"+7 (___) _______"}});

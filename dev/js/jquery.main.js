@@ -3,36 +3,13 @@ $(document).ready(function($) {
 
     'use strict';
 
+    /*Show DOM after load scripts*/
     $('.main__right').css('display', 'flex');
-
-    /*Phone mask*/
-    var phone = $('input[type="tel"]');
-    phone.inputmask("+7 (999) 999-99-99", {
-        oncomplete: function() {
-            $('.section-1 .form__button .button').removeAttr('disabled');
-            phone.addClass('active');
-        },
-        oncleared: function() {
-            $('.section-1 .form__input input').removeClass('active');
-            $('.section-1 .form__button .button').attr('disabled', true);
-        },
-        clearIncomplete: true
-    });
-
-    var verify = $('.section-2 input[type="text"], .section-4 input[type="text"]');
-    verify.inputmask("9 9 9 9", {
-        oncomplete: function() {
-            $('.section-2 .form__button .button').removeAttr('disabled');
-            $('.section-4 .form__button .button').removeAttr('disabled');
-            verify.addClass('active');
-        },
-        clearIncomplete: true,
-        oncleared: function() {
-            $('.section-2 .form__input input').removeClass('active');
-            $('.section-4 .form__input input').removeClass('active');
-            $('.section-2 .form__button .button').attr('disabled', true);
-            $('.section-4 .form__button .button').attr('disabled', true);
-        }
+    
+    /*Check error if click*/
+    var $verify_button = $('.check_button');
+    $verify_button.on('click', function(){
+        $(this).parents('.form__verify').addClass('error_verify');
     });
 
     /*Show hide pass*/
