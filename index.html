@@ -85,11 +85,10 @@
                                             <div class="right__subtitle">СМС с кодом активации выслан на указанный телефон</div>
                                             <form class="form form__verify">
                                                 <div class="form__input">
-                                                    <input :class="{ novalid: checkButton }" type="text" value="" required="required" v-model="yourCode" v-mask="maskCode"><label>Введите код</label>
+                                                    <input type="text" value="" required="required" v-mask="maskCode"><label>Введите код</label>
                                                 </div>
                                                 <div class="form__button">
-                                                    <button type='button' class="button" v-if="yourCode !== '11111'" @click="checkButton = !false">Подключиться</button>
-                                                    <button type='button' class="button" v-else @click="success = !false">Подключиться</button>
+                                                    <button type='button' class="button" @click="success = !false">Подключиться</button>
                                                 </div>
                                             </form>
                                             <transition name="slide">
