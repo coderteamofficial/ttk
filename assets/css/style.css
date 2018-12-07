@@ -162,7 +162,8 @@ p:last-child {
   border: 1px solid #fff;
   height: 40px;
   padding: 0 2rem;
-  cursor: pointer;
+  cursor: pointer !important;
+  -webkit-appearance: none;
   font-size: 1em;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -203,6 +204,14 @@ p:last-child {
   opacity: 0.5;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
   filter: alpha(opacity=50);
+}
+@media only screen and (max-width: 768px) {
+  .button::before {
+    display: none;
+  }
+  .button:hover::before {
+    display: none;
+  }
 }
 @media only screen and (max-width: 480px) {
   .button {
